@@ -1,0 +1,8 @@
+flake8==6.1.0
+Django==4.2.5
+python-dotenv==1.0.0
+flake8-alphabetize==0.0.21
+flake8-comprehensions==3.14.0
+flake8-quotes==3.3.2
+pep8-naming==0.13.3
+flake8-import-order==0.18.1

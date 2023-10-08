@@ -1,0 +1,15 @@
+stages:
+  - linting
+
+flake8:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  script:
+    - pip install flake8 flake8-alphabetize flake8-comprehensions flake8-quotes pep8-naming flake8-import-order
+    - flake8 --verbose --enable-extensions=flake8-alphabetize,flake8-comprehensions,flake8-quotes,pep8-naming,flake8-import-order .
+
+black:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/black:latest
+  script:
+    - black --check --verbose -- .
