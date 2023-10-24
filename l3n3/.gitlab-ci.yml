@@ -1,0 +1,23 @@
+stages:
+  - linting
+  - test
+
+flake8:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/flake8:latest
+  script:
+    - pip3 install flake8-alphabetize flake8-comprehensions flake8-quotes pep8-naming flake8-import-order
+    - flake8 --verbose --enable-extensions=flake8-alphabetize,flake8-comprehensions,flake8-quotes,pep8-naming,flake8-import-order --config .flake8 lyceum/
+
+black:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/black:latest
+  script:
+    - black --check --verbose --config pyproject.toml .
+  
+django-tests:
+  stage: test
+  script:
+    - pip3 install -r requirements/dev.txt
+    - cd lyceum
+    - python manage.py test
